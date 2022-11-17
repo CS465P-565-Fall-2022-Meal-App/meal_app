@@ -1,4 +1,13 @@
 /** @format */
+
+/**
+ * This code is incomplete and should not be used unless updated to resolve issues.
+ * It constantly fetches data and results do not always arrive.
+ *
+ * This code is kept for posterity.
+ */
+
+/*
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -49,3 +58,4 @@ export default function IngredientSearch() {
     </form>
   );
 }
+*/
