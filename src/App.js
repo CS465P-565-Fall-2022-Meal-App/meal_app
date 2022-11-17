@@ -1,5 +1,9 @@
+/** @format */
+
 import logo from './logo.svg';
 import './App.css';
+import IngredientSearch from './mealDB/Ingredient_search';
+import Search from './mealDB/search';
 
 function App() {
   return (
@@ -17,6 +21,7 @@ function App() {
         >
           Learn React
         </a>
+        <Search />
       </header>
     </div>
   );
