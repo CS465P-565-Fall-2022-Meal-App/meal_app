@@ -3,8 +3,6 @@
 import React, { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { useMeals } from './mealDB/meal-hooks';
-import MealProvider from './mealDB/MealProvider';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

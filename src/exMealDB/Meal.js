@@ -9,7 +9,7 @@ export default function Meal({ id, name, thumb }) {
   return (
     <section className="meal-card">
       <h2>{name}</h2>
-      <img src={require(thumb)} alt={name} />
+      <img src={thumb} alt={name} />
       <button onClick={() => showDetails(id)}>Details</button>
     </section>
   );
