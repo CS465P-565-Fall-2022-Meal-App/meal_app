@@ -6,15 +6,18 @@ import './App.css';
 
 import colorData from './ColorApp/color-data.json';
 import ColorList from './ColorApp/ColorList';
+import AddColorForm from './ColorApp/AddColorForm';
 
 import mealData from './mealAPP/meal-data.json';
 import MealList from './mealAPP/MealList';
+import SearchIngredientForm from './mealAPP/SearchIngredientForm';
 
 export default function App() {
   const [colors, setColors] = useState(colorData);
   const [meals, setMeals] = useState(mealData);
   return (
     <div className="App">
+      <AddColorForm />
       <ColorList
         colors={colors}
         onRateColor={(id, rating) => {
@@ -28,6 +31,7 @@ export default function App() {
           setColors(newColors);
         }}
       />
+      <SearchIngredientForm />
       <MealList
         meals={meals}
         onRemoveMeal={(idMeal) => {
