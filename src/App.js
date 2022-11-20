@@ -1,11 +1,17 @@
 /** @format */
 
 import logo from './logo.svg';
-import './App.css';
-import IngredientSearch from './mealDB/Ingredient_search';
-import Search from './mealDB/search';
+import React from 'react';
 
-function App() {
+import './App.css';
+import Search from './mealDB/search';
+import AlphaMenu from './mealDB/alphaMenu';
+
+import MealList from './mealDB/MealList';
+import GetMeals from './mealDB/GetMeals';
+import StarRating from './ColorApp/StarRating';
+
+export default function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -21,10 +27,8 @@ function App() {
         >
           Learn React
         </a>
-        <Search />
+        <StarRating />
       </header>
     </div>
   );
 }
-
-export default App;
