@@ -9,6 +9,7 @@ export default function Color({
   color,
   rating,
   onRemove = (f) => f,
+  onRate = (f) => f,
 }) {
   return (
     <section>
@@ -17,7 +18,10 @@ export default function Color({
         <FaTrash />
       </button>
       <div style={{ height: 50, backgroundColor: color }} />
-      <StarRating selectedStars={rating} />
+      <StarRating
+        selectedStars={rating}
+        onRate={(rating) => onRate(id, rating)}
+      />
     </section>
   );
 }

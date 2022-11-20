@@ -11,8 +11,7 @@ export default function Meal({
   return (
     <section>
       <h1>{strMeal} </h1>
-
-      <img src={strMealThumb} alt={strMeal} />
+      <img src={strMealThumb} alt={strMeal} width="50px" />
       <button onClick={() => onRemove(idMeal)}>
         <FaTrash />
       </button>
