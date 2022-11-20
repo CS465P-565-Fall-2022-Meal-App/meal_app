@@ -1,20 +1,20 @@
 /** @format */
 
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 
 export default function SearchIngredientForm({ onIngredient = (f) => f }) {
-  const txtIngredient = useRef();
+  const [ingredient, setIngredient] = useState('');
 
   const submit = (event) => {
     event.preventDefault();
-    const ingredient = txtIngredient.current.value;
     onIngredient(ingredient);
-    txtIngredient.current.value = '';
+    setIngredient('');
   };
   return (
     <form onSubmit={submit}>
       <input
-        ref={txtIngredient}
+        value={ingredient}
+        onChange={(event) => setIngredient('')}
         type="text"
         placeholder="enter an ingredient"
         required
