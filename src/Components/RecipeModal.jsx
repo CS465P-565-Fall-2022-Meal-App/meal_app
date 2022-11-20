@@ -7,6 +7,7 @@ import {
   faBookmark,
 } from "@fortawesome/fontawesome-free-regular";
 import styles from "./RecipeModal.module.css";
+
 function RecipeModal(props) {
   return (
     <Modal

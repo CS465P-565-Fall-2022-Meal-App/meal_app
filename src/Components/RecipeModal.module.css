@@ -9,14 +9,13 @@
   color: #2b2a2b;
 }
 
-.partialScreen h3 {
-  margin-left: 16px;
-  margin-top: 16px;
-}
-
 .partialScreen p {
   margin-left: 16px;
   margin-right: 16px;
+}
+.partialScreen h3 {
+  margin-left: 16px;
+  margin-top: 16px;
 }
 
 .separator {
