@@ -107,18 +107,4 @@ function RecipeModal(props) {
   );
 }
 
-function App() {
-  const [modalShow, setModalShow] = React.useState(false);
-
-  return (
-    <>
-      <button onClick={() => setModalShow(true)}>
-        Launch vertically centered modal
-      </button>
-
-      <RecipeModal show={modalShow} onHide={() => setModalShow(false)} />
-    </>
-  );
-}
-
-export default App;
+export default RecipeModal;
