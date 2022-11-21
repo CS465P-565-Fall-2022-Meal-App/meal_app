@@ -26,23 +26,11 @@ export default function MealProvider({ children }) {
 
   const getMeals = (url, param) => {
     const fetchedMeals = [];
-    console.log('In getMeals:', param);
     fetch(`${url}${param}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.meals) {
-          console.log(data.meals);
           setMeals([...data.meals]);
-          /*
-          data.meals.forEach((meal) => {
-            console.log(meal);
-            const idMeal = meal.idMeal;
-            const strMeal = meal.strMeal;
-            const strMealThumb = meal.strMealThumb;
-            fetchedMeals.push({ idMeal, strMeal, strMealThumb });
-            setMeals([...fetchedMeals]);
-          });
-          */
         }
       });
     console.log('Fetched: ', fetchedMeals);
