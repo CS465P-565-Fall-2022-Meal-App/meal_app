@@ -26,7 +26,9 @@ export default function SearchIngredientForm() {
         placeholder="enter an ingredient"
         required
       />
-      <button>Search</button>
+      <button>
+        <FaSearch />
+      </button>
     </form>
   );
 }

@@ -1,16 +1,15 @@
 /** @format */
 
 import React, { createContext, useState, useContext } from 'react';
-import mealData from './meal-data.json';
-import { v4 } from 'uuid';
 
 const MealContext = createContext();
 export const useMeals = () => useContext(MealContext);
 
 export default function MealProvider({ children }) {
-  const [meals, setMeals] = useState(mealData);
+  const [meals, setMeals] = useState([]);
 
   const addMeal = (id, name, thumb) => {
+    console.log(id, name);
     setMeals([
       ...meals,
       {
@@ -20,50 +19,54 @@ export default function MealProvider({ children }) {
       },
     ]);
   };
-  /*
+
   const getMeal = (id) => {
     //TODO: getMeal by id and return details
   };
-*/
 
   const getMeals = (url, param) => {
-    const fetchMeals = [];
+    const fetchedMeals = [];
     console.log('In getMeals:', param);
     fetch(`${url}${param}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.meals) {
           console.log(data.meals);
+          setMeals([...data.meals]);
+          /*
           data.meals.forEach((meal) => {
+            console.log(meal);
             const idMeal = meal.idMeal;
             const strMeal = meal.strMeal;
             const strMealThumb = meal.strMealThumb;
-
-            addMeal(idMeal, strMeal, strMealThumb);
+            fetchedMeals.push({ idMeal, strMeal, strMealThumb });
+            setMeals([...fetchedMeals]);
           });
+          */
         }
       });
+    console.log('Fetched: ', fetchedMeals);
   };
 
   const removeMeal = (idMeal) =>
     setMeals(meals.filter((meal) => meal.idMeal !== idMeal));
-  /*
+
   const removeAllMeals = () => setMeals([]);
 
   const showDetails = (id) => {
     //TODO: get meal details by id and return modul
   };
-*/
+
   return (
     <MealContext.Provider
       value={{
         meals,
         addMeal,
-        // getMeal,
+        getMeal,
         getMeals,
         removeMeal,
-        //  removeAllMeals,
-        //  showDetails,
+        removeAllMeals,
+        showDetails,
       }}
     >
       {children}

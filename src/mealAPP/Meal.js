@@ -1,18 +1,18 @@
 /** @format */
 
 import React from 'react';
-import { FaTrash } from 'react-icons/fa';
 import { useMeals } from './MealProvider';
 
 export default function Meal({ idMeal, strMeal, strMealThumb }) {
   const { removeMeal } = useMeals();
+  const { getMeal } = useMeals();
   return (
     <section>
-      <h1>{strMeal} </h1>
+      <h1>
+        {strMeal} <button onClick={() => removeMeal(idMeal)}>X</button>
+      </h1>
       <img src={strMealThumb} alt={strMeal} width="50px" />
-      <button onClick={() => removeMeal(idMeal)}>
-        <FaTrash />
-      </button>
+      <button onClick={() => getMeal(idMeal)}>Details</button>
     </section>
   );
 }
