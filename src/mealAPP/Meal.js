@@ -11,7 +11,7 @@ export default function Meal({ idMeal, strMeal, strMealThumb }) {
       <h1>
         {strMeal} <button onClick={() => removeMeal(idMeal)}>X</button>
       </h1>
-      <img src={strMealThumb} alt={strMeal} width="50px" />
+      <img src={strMealThumb} alt={strMeal} />
       <button onClick={() => getMeal(idMeal)}>Details</button>
     </section>
   );
