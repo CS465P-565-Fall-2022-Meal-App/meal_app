@@ -2,19 +2,18 @@
 
 import React from 'react';
 import { render } from 'react-dom';
-import ColorProvider from './ColorApp/ColorProvider';
 
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
 import MealProvider from './mealApp/MealProvider';
 
 render(
-  <ColorProvider>
-    <MealProvider>
-      <App />
-    </MealProvider>
-  </ColorProvider>,
+  <MealProvider>
+    <App />
+  </MealProvider>,
+
   document.getElementById('root'),
 );
 
