@@ -1,19 +1,21 @@
 /** @format */
 
-import React, { createContext } from 'react';
-import ReactDOM from 'react-dom/client';
+import React from 'react';
+import { render } from 'react-dom';
+import ColorProvider from './ColorApp/ColorProvider';
+
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import MealProvider from './mealApp/MealProvider';
 
-import { render } from 'react-dom';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+render(
+  <ColorProvider>
+    <MealProvider>
+      <App />
+    </MealProvider>
+  </ColorProvider>,
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
