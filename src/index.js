@@ -7,7 +7,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import MealProvider from './mealApp/MealProvider';
+import MealProvider from './MealApp/MealProvider';
 
 render(
   <MealProvider>

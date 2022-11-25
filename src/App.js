@@ -4,8 +4,8 @@ import React from 'react';
 
 import './App.css';
 
-import MealList from './mealApp/MealList';
-import SearchIngredientForm from './mealApp/SearchIngredientForm';
+import MealList from './MealApp/MealList';
+import SearchIngredientForm from './MealApp/SearchIngredientForm';
 
 export default function App() {
   return (
