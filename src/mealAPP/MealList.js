@@ -1,6 +1,7 @@
 /** @format */
 
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import Meal from './Meal';
 import { useMeals } from './MealProvider';
 
@@ -11,11 +12,11 @@ export default function MealList() {
   if (!meals.length) return <div>No Meals Listed. (Search or Browse)</div>;
 
   return (
-    <div className="meal-list">
-      <button onClick={() => removeAllMeals()}>Clear List</button>
+    <section className="meal-list">
+      <Button onClick={() => removeAllMeals()}>Clear List</Button>
       {meals.map((meal) => (
         <Meal key={meal.idMeal} {...meal} />
       ))}
-    </div>
+    </section>
   );
 }

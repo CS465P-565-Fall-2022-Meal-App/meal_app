@@ -7,7 +7,7 @@ export const useMeals = () => useContext(MealContext);
 
 export default function MealProvider({ children }) {
   const BASE_URL_INGREDIENT_SEARCH =
-    'https://www.themealdb.com/api/json/v1/1/filter.php?i=`';
+    'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
   const BASE_URL_MEAL_DETAILS = '';
   const [meals, setMeals] = useState([]);
   const [mealDetails, setMealDetails] = useState([]);
