@@ -1,6 +1,8 @@
 import Modal from "../../node_modules/react-bootstrap/Modal";
-import React from "react";
+import React, { Component } from "react";
+import Button from "../../node_modules/react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import {
   faClock,
   faUser,
@@ -8,103 +10,120 @@ import {
 } from "@fortawesome/fontawesome-free-regular";
 import styles from "./RecipeModal.module.css";
 
-function RecipeModal(props) {
-  return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <div className={styles.partialScreen}>
-        <img
-          className={styles.recipeCardImage}
-          src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg"
-          alt=""
-        />
-        <div style={{ textAlign: "left" }}>
-          <h3>Paneer Butter Masala</h3>
-          <div className={styles.separator}></div>
-        </div>
-        <div className={styles.container}>
-          <div className={styles.column}>
-            <h4 className={styles.columntitle}>
-              <FontAwesomeIcon style={{ color: "gray" }} icon={faClock} />
-              &nbsp; 20
-            </h4>
-            <h6>Minutes</h6>
-          </div>
-          <div className={styles.column}>
-            <h4 className={styles.columntitle}>
-              <FontAwesomeIcon style={{ color: "gray" }} icon={faBookmark} />
-              &nbsp; 5
-            </h4>
-            <h6>Ingredients</h6>
-          </div>
-          <div className={styles.column}>
-            <h4 className={styles.columntitle}>
-              <FontAwesomeIcon style={{ color: "gray" }} icon={faUser} />
-              &nbsp; 4-5
-            </h4>
-            <h6>Servings</h6>
-          </div>
-        </div>
-        <div>
-          <h3>Ingredients</h3>
-          <div className={styles.separator}></div>
+class RecipeModal extends Component {
+  state = {
+    mealName: "",
+    mealImg: "",
+    mealInstructions: [],
+    mealIngredients: [],
+    mealYoutubeURL: "",
+  };
+  componentDidMount() {
+    axios
+      .get(
+        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${this.props.id}`
+      )
+      .then((res) => {
+        const meal = res.data.meals[0];
+        let ingredients = [];
+        for (var i = 1; i < 21; i++) {
+          let ingredient = "";
+          if (meal[`strIngredient${i}`] !== "") {
+            ingredient += meal[`strIngredient${i}`];
+          } else {
+            break;
+          }
+          if (meal[`strMeasure${i}`] !== "") {
+            ingredient += ` - ${meal[`strMeasure${i}`]}`;
+          }
+          ingredients.push(ingredient);
+        }
+        this.setState({
+          mealName: meal.strMeal,
+          mealImg: meal.strMealThumb,
+          mealInstructions: meal.strInstructions.split(/\r?\n/),
+          mealIngredients: ingredients,
+          mealYoutubeURL: meal.strYoutube,
+        });
+      });
+  }
+  openYoutube = () => {
+    window.open(this.state.mealYoutubeURL, "_blank", "noopener,noreferrer");
+  };
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const ingredients = this.state.mealIngredients.map((ingredient) => {
+      return <li key={ingredient}>{ingredient}</li>;
+    });
 
-          <p>1. Paneer</p>
-          <p>2. Cashews</p>
-          <p>3. Tomatoes</p>
-          <p>4. Salt</p>
-          <p>5. Sugar</p>
-          <p>6. Turmeric Powder</p>
-          <p>7. Garam Masala</p>
+    const instructions = this.state.mealInstructions.map((instruction) => {
+      if (instruction.length > 0)
+        return <li key={instruction}>{instruction}</li>;
+    });
 
-          <h3>Recipe</h3>
-          <div className={styles.separator}></div>
-
-          <p>
-            1. Soak 18 to 20 cashews in ⅓ cup hot water for 20 to 30 minutes.
-          </p>
-          <p>
-            2. While the cashews are soaking, you can prep the other
-            ingredients. It’s time for chopping tomatoes, chopping and preparing
-            the ginger-garlic paste, and slicing paneer into cubes.
-          </p>
-          <p>
-            3. To make the ginger garlic paste, crush a 1 inch piece of peeled
-            ginger with 3 to 4 small to medium-sized garlic cloves in a mortar &
-            pestle. Continue crushing until it is a semi-fine or fine paste.
-            Keep aside.
-          </p>
-          <p>
-            4. After 20 to 30 minutes, drain the water and add the soaked
-            cashews to a blender or mixer-grinder.
-          </p>
-          <p>
-            5. Blend to a smooth paste without any tiny bits or chunks of
-            cashews. Remove the cashew paste from the blender and set it aside.
-          </p>
-          <p>
-            6. In the same blender, add 2 cups of diced or roughly chopped
-            tomatoes.
-          </p>
-          <p>7. Blend to a smooth tomato puree. Set aside.</p>
-          <p>
-            8. Heat a thick bottomed pan or a heavy pan. Keep the heat to a low
-            or medium-low. Add 2 tablespoons (or 3 to 4 tablespoons for a richer
-            version) butter in a pan. Either salted or unsalted butter can be
-            used.
-          </p>
+    return (
+      <Modal
+        {...this.props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <div className={styles.partialScreen}>
+          <img
+            className={styles.recipeCardImage}
+            src={this.state.mealImg}
+            alt=""
+          />
+          <div style={{ textAlign: "left" }}>
+            <h3>{this.state.mealName}</h3>
+            <div className={styles.separator}></div>
+          </div>
+          <div className={styles.container}>
+            <div className={styles.column}>
+              <h4 className={styles.columntitle}>
+                <FontAwesomeIcon style={{ color: "gray" }} icon={faClock} />
+                &nbsp; 20
+              </h4>
+              <h6>Minutes</h6>
+            </div>
+            <div className={styles.column}>
+              <h4 className={styles.columntitle}>
+                <FontAwesomeIcon style={{ color: "gray" }} icon={faBookmark} />
+                &nbsp; {this.state.mealIngredients.length}
+              </h4>
+              <h6>Ingredients</h6>
+            </div>
+            <div className={styles.column}>
+              <h4 className={styles.columntitle}>
+                <FontAwesomeIcon style={{ color: "gray" }} icon={faUser} />
+                &nbsp; 4-5
+              </h4>
+              <h6>Servings</h6>
+            </div>
+          </div>
+          <div>
+            <h3>Ingredients</h3>
+            <div className={styles.separator}></div>
+            <ol>{ingredients}</ol>
+            <h3>Recipe</h3>
+            <div className={styles.separator}></div>
+            <ol>{instructions}</ol>
+          </div>
+          <div className={styles.centered}>
+            <button
+              className={styles.button}
+              onClick={() => this.openYoutube()}
+            >
+              View Recipe on Youtube
+            </button>
+            <button className={styles.button}>Save Recipe</button>
+          </div>
         </div>
-        <div className={styles.centered}>
-          <button className={styles.button}>View Recipe on Youtube</button>
-          <button className={styles.button}>Save Recipe</button>
-        </div>
-      </div>
-    </Modal>
-  );
+      </Modal>
+    );
+  }
 }
 
 export default RecipeModal;
