@@ -1,14 +1,22 @@
 /** @format */
 
 import React, { createContext, useState, useContext } from 'react';
+import Fetch from './Fetch';
+
+/**
+ * Global constants
+ * Consider moving to a utility file, but this is only place they are used at
+ * the moment.
+ */
+export const BASE_URL_INGREDIENT_SEARCH =
+  'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
+export const BASE_URL_MEAL_DETAILS =
+  'www.themealdb.com/api/json/v1/1/lookup.php?i=';
 
 const MealContext = createContext();
 export const useMeals = () => useContext(MealContext);
 
 export default function MealProvider({ children }) {
-  const BASE_URL_INGREDIENT_SEARCH =
-    'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
-  const BASE_URL_MEAL_DETAILS = '';
   const [meals, setMeals] = useState([]);
   const [mealDetails, setMealDetails] = useState([]);
   const [fetchParam, setFetchParam] = useState('');
@@ -30,11 +38,15 @@ export default function MealProvider({ children }) {
   };
 
   const getMeals = (param) => {
+    let counter = 0;
     fetch(`${BASE_URL_INGREDIENT_SEARCH}${param}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.meals) {
+          console.log('fetch counter: ', counter++);
           setMeals([...data.meals]);
+        } else {
+          setMeals([{ mealID: 0, strMeal: 'None Found', strMealThumb: '' }]);
         }
       });
   };
@@ -44,9 +56,24 @@ export default function MealProvider({ children }) {
 
   const removeAllMeals = () => setMeals([]);
 
-  const showDetails = (id) => {
-    //TODO: get meal details by id and return modul
-    console.log(id);
+  const fetchDetail = (id) => {
+    console.log('Fetching...');
+    fetch(`${BASE_URL_MEAL_DETAILS}${id}`)
+      .then((response) => {
+        console.log('got response');
+        return response.json();
+      })
+      .then((data) => {
+        if (data.meals) {
+          console.log('got data');
+          showDetails([...data.meals]);
+        }
+      });
+  };
+
+  const showDetails = (mealsData) => {
+    //TODO: get meal details and return modul
+    console.log('Meal Data: ', mealsData);
   };
 
   return (
@@ -65,6 +92,7 @@ export default function MealProvider({ children }) {
         getMeals,
         removeMeal,
         removeAllMeals,
+        fetchDetail,
         showDetails,
       }}
     >
