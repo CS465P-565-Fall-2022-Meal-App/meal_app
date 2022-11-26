@@ -10,6 +10,9 @@ import reportWebVitals from './reportWebVitals';
 
 import MealProvider from './MealApp/MealProvider';
 
+// to check for duplicate versions of react
+window.React1 = require('react');
+
 render(
   <MealProvider>
     <App />

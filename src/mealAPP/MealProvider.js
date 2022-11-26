@@ -2,6 +2,12 @@
 
 import React, { createContext, useState, useContext } from 'react';
 
+// to check for duplicate versions of react
+require('react-dom');
+window.React2 = require('react');
+console.log(window.React1 === window.React2);
+console.log(window.React2);
+
 const MealContext = createContext();
 export const useMeals = () => useContext(MealContext);
 
@@ -14,7 +20,6 @@ export default function MealProvider({ children }) {
   const [fetchParam, setFetchParam] = useState('');
 
   const addMeal = (id, name, thumb) => {
-    console.log(id, name);
     setMeals([
       ...meals,
       {
