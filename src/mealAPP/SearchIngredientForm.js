@@ -14,7 +14,6 @@ export default function SearchIngredientForm() {
   const submit = (event) => {
     event.preventDefault();
     getMeals(url, ingredientProps.value);
-    //getMeals(url, ingredientProps.value);
     resetIngredient();
   };
 
