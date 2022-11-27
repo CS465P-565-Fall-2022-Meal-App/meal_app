@@ -1,7 +1,6 @@
 /** @format */
 
 import React, { createContext, useState, useContext } from 'react';
-import Fetch from './Fetch';
 
 /**
  * Global constants
@@ -11,15 +10,16 @@ import Fetch from './Fetch';
 export const BASE_URL_INGREDIENT_SEARCH =
   'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
 export const BASE_URL_MEAL_DETAILS =
-  'www.themealdb.com/api/json/v1/1/lookup.php?i=';
+  'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
 
 const MealContext = createContext();
 export const useMeals = () => useContext(MealContext);
 
 export default function MealProvider({ children }) {
   const [meals, setMeals] = useState([]);
-  const [mealDetails, setMealDetails] = useState([]);
+  const [details, setDetails] = useState([]);
   const [fetchParam, setFetchParam] = useState('');
+  const [fetchStatus, setFetchStatus] = useState('waiting');
 
   const addMeal = (id, name, thumb) => {
     console.log(id, name);
@@ -33,17 +33,21 @@ export default function MealProvider({ children }) {
     ]);
   };
 
-  const getMeal = (id) => {
-    //TODO: getMeal by id and return details
+  const getDetails = (id) => {
+    fetch(`${BASE_URL_MEAL_DETAILS}${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.meals) {
+          setDetails([...details, ...data.meals]);
+        }
+      });
   };
 
   const getMeals = (param) => {
-    let counter = 0;
     fetch(`${BASE_URL_INGREDIENT_SEARCH}${param}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.meals) {
-          console.log('fetch counter: ', counter++);
           setMeals([...data.meals]);
         } else {
           setMeals([{ mealID: 0, strMeal: 'None Found', strMealThumb: '' }]);
@@ -56,25 +60,19 @@ export default function MealProvider({ children }) {
 
   const removeAllMeals = () => setMeals([]);
 
-  const fetchDetail = (id) => {
-    console.log('Fetching...');
-    fetch(`${BASE_URL_MEAL_DETAILS}${id}`)
-      .then((response) => {
-        console.log('got response');
-        return response.json();
-      })
-      .then((data) => {
-        if (data.meals) {
-          console.log('got data');
-          showDetails([...data.meals]);
+  const updateDetails = () => {
+    if (meals) {
+      meals.forEach((meal) => {
+        if (
+          details.findIndex((element) => element.idMeal === meal.idMeal) === -1
+        ) {
+          getDetails(meal.idMeal);
         }
       });
+    }
   };
 
-  const showDetails = (mealsData) => {
-    //TODO: get meal details and return modul
-    console.log('Meal Data: ', mealsData);
-  };
+  updateDetails();
 
   return (
     <MealContext.Provider
@@ -83,17 +81,17 @@ export default function MealProvider({ children }) {
         BASE_URL_MEAL_DETAILS,
         meals,
         setMeals,
-        mealDetails,
-        setMealDetails,
+        details,
+        setDetails,
         fetchParam,
+        fetchStatus,
+        setFetchStatus,
         addMeal,
         setFetchParam,
-        getMeal,
+        getDetails,
         getMeals,
         removeMeal,
         removeAllMeals,
-        fetchDetail,
-        showDetails,
       }}
     >
       {children}

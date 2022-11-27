@@ -6,11 +6,11 @@ import Meal from './Meal';
 import { useMeals } from './MealProvider';
 
 export default function MealList() {
-  const { meals } = useMeals();
-  const { removeAllMeals } = useMeals();
+  const { meals, removeAllMeals } = useMeals();
 
-  if (!meals.length)
+  if (!meals.length) {
     return <div>Search for a listing of meals by Ingredient</div>;
+  }
 
   if (!meals[0].idMeal) {
     return (
@@ -19,11 +19,15 @@ export default function MealList() {
   }
 
   return (
-    <section className="meal-list">
-      <Button onClick={() => removeAllMeals()}>Clear List</Button>
-      {meals.map((meal) => (
-        <Meal key={meal.idMeal} {...meal} />
-      ))}
-    </section>
+    <>
+      <section className="meal-list">
+        <Button onClick={() => removeAllMeals()}>Clear List</Button>
+        {meals.map((meal) => (
+          <>
+            <Meal key={meal.idMeal} {...meal} />
+          </>
+        ))}
+      </section>
+    </>
   );
 }
