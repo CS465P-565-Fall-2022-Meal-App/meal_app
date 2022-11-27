@@ -33,18 +33,18 @@ export default function MealProvider({ children }) {
     ]);
   };
 
-  const getDetails = (id) => {
-    fetch(`${BASE_URL_MEAL_DETAILS}${id}`)
+  async function getDetails(id) {
+    await fetch(`${BASE_URL_MEAL_DETAILS}${id}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.meals) {
-          setDetails([...details, ...data.meals]);
+          setDetails([...data.meals]);
         }
       });
-  };
+  }
 
-  const getMeals = (param) => {
-    fetch(`${BASE_URL_INGREDIENT_SEARCH}${param}`)
+  async function getMeals(param) {
+    await fetch(`${BASE_URL_INGREDIENT_SEARCH}${param}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.meals) {
@@ -53,26 +53,12 @@ export default function MealProvider({ children }) {
           setMeals([{ mealID: 0, strMeal: 'None Found', strMealThumb: '' }]);
         }
       });
-  };
+  }
 
   const removeMeal = (idMeal) =>
     setMeals(meals.filter((meal) => meal.idMeal !== idMeal));
 
   const removeAllMeals = () => setMeals([]);
-
-  const updateDetails = () => {
-    if (meals) {
-      meals.forEach((meal) => {
-        if (
-          details.findIndex((element) => element.idMeal === meal.idMeal) === -1
-        ) {
-          getDetails(meal.idMeal);
-        }
-      });
-    }
-  };
-
-  updateDetails();
 
   return (
     <MealContext.Provider

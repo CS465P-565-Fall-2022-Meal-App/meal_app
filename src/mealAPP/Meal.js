@@ -1,30 +1,26 @@
 /** @format */
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Card, CloseButton, Image } from 'react-bootstrap';
 import { useMeals } from './MealProvider';
 
 export default function Meal({ idMeal, strMeal, strMealThumb }) {
-  const { removeMeal, details } = useMeals();
-  //const [mealDetails, setMealDetails] = useState({});
-
-  const getMealDetails = (idMeal) => {
-    //    setMealDetails(...details.filter((meal) => meal.idMeal === idMeal));
-  };
-
-  getMealDetails(idMeal);
+  const { removeMeal, details, getDetails } = useMeals();
 
   const handleClick = () => {
+    getDetails(idMeal);
     console.log('Click: ', details);
   };
 
   return (
     <>
-      <Card style={{ width: '18rem' }}>
-        <CloseButton onClick={() => removeMeal(idMeal)} />
-        <Card.Title>{strMeal}</Card.Title>
-        <Image src={strMealThumb} alt={strMeal} />
-        <Button onClick={handleClick}>Details</Button>
+      <Card className="card" style={{ width: '18rem' }}>
+        <CloseButton className="close-btn" onClick={() => removeMeal(idMeal)} />
+        <Card.Title className="card-title">{strMeal}</Card.Title>
+        <Image className="card-thumb" src={strMealThumb} alt={strMeal} />
+        <Button className="card-detail-btn" onClick={handleClick}>
+          Details
+        </Button>
       </Card>
     </>
   );
