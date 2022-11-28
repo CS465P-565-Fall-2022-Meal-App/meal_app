@@ -3,8 +3,10 @@
 import React from 'react';
 
 import MealApp from '../MealApp/MealApp';
+import RecipeModal from './RecipeModal';
 
 export default function Body() {
+  const [modalShow, setModalShow] = React.useState(false);
   return (
     <div>
       <div
@@ -85,6 +87,15 @@ export default function Body() {
 
           <MealApp />
         </div>
+      </div>
+      <div>
+        <button onClick={() => setModalShow(true)}> Tap for Details</button>
+
+        <RecipeModal
+          id="52773"
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+        />
       </div>
     </div>
   );
