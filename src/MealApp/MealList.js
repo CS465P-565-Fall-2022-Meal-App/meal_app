@@ -25,8 +25,8 @@ export default function MealList() {
   return (
     <>
       <section className="meal-list mb-3">
-        <Button className="mb-3" onClick={() => removeAllMeals()}>
-          Clear List
+        <Button className="mb-3 btn" onClick={() => removeAllMeals()}>
+          Reset Search
         </Button>
         <div>
           <div className="card-container">

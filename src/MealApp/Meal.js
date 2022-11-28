@@ -3,14 +3,11 @@
 import React from 'react';
 import { Button, Card, CloseButton, Image } from 'react-bootstrap';
 import { useMeals } from './MealProvider';
+import RecipeModal from '../MyComponents/RecipeModal';
 
 export default function Meal({ idMeal, strMeal, strMealThumb }) {
-  const { removeMeal, details, getDetails } = useMeals();
-
-  const handleClick = () => {
-    getDetails(idMeal);
-    console.log('Click: ', details);
-  };
+  const { removeMeal } = useMeals();
+  const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <>
@@ -24,9 +21,17 @@ export default function Meal({ idMeal, strMeal, strMealThumb }) {
           <Card.Title className="card-title">{strMeal}</Card.Title>
         </div>
         <Image className="card-thumb" src={strMealThumb} alt={strMeal} />
-        <Button className="card-detail-btn m-2 mx-5" onClick={handleClick}>
-          Details
+        <Button
+          className="card-detail-btn btn m-2 mx-5"
+          onClick={() => setModalShow(true)}
+        >
+          Tap for Details
         </Button>
+        <RecipeModal
+          id={idMeal}
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+        />
       </Card>
     </>
   );
