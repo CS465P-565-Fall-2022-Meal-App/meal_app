@@ -8,9 +8,11 @@ import React, { createContext, useState, useContext } from 'react';
  * the moment.
  */
 export const BASE_URL_INGREDIENT_SEARCH =
-  'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
+  'https://www.themealdb.com/api/json/v2/9973533/filter.php?i=';
 export const BASE_URL_MEAL_DETAILS =
-  'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
+  'https://www.themealdb.com/api/json/v2/9973533/lookup.php?i=';
+export const BASE_URL_MEAL_NAME_SEARCH =
+  'https://www.themealdb.com/api/json/v2/9973533/search.php?s=';
 
 const MealContext = createContext();
 export const useMeals = () => useContext(MealContext);
@@ -33,18 +35,8 @@ export default function MealProvider({ children }) {
     ]);
   };
 
-  async function getDetails(id) {
-    await fetch(`${BASE_URL_MEAL_DETAILS}${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.meals) {
-          setDetails([...data.meals]);
-        }
-      });
-  }
-
-  async function getMeals(param) {
-    await fetch(`${BASE_URL_INGREDIENT_SEARCH}${param}`)
+  async function getMeals(base, param) {
+    await fetch(`${base}${param}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.meals) {
@@ -74,7 +66,7 @@ export default function MealProvider({ children }) {
         setFetchStatus,
         addMeal,
         setFetchParam,
-        getDetails,
+
         getMeals,
         removeMeal,
         removeAllMeals,
