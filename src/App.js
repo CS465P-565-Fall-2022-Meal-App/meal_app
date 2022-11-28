@@ -9,9 +9,11 @@ import SearchIngredientForm from './MealApp/SearchIngredientForm';
 
 export default function App() {
   return (
-    <div className="App">
-      <SearchIngredientForm />
-      <MealList />
+    <div className="meal-wrapper">
+      <div className="meal-search">
+        <SearchIngredientForm />
+        <MealList />
+      </div>
     </div>
   );
 }
