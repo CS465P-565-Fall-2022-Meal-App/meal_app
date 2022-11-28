@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import MealProvider from './MealApp/MealProvider';
+import MealProvider from './MealAppDir/MealProvider';
 
 render(
   <MealProvider>

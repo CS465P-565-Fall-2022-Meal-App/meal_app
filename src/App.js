@@ -4,7 +4,7 @@ import React from 'react';
 
 import './App.css';
 
-import MealApp from './MealApp/MealApp';
+import MealApp from './MealAppDir/MealApp';
 
 export default function App() {
   return (
