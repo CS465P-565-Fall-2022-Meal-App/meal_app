@@ -6,7 +6,7 @@ import { FaSearch } from 'react-icons/fa';
 import { useInput } from '../hooks';
 import { useMeals } from './MealProvider';
 
-export default function SearchIngredientForm() {
+export default function MealIngredientSearch() {
   const [ingredientProps, resetIngredient] = useInput('');
   const { getMeals } = useMeals();
   const submit = (event) => {
@@ -16,14 +16,16 @@ export default function SearchIngredientForm() {
   };
 
   return (
-    <Form className="" onSubmit={submit}>
-      <Form.Group>
-        <Form.Label>Search by Ingredient</Form.Label>
+    <Form onSubmit={submit}>
+      <Form.Group className="mb-3 container">
+        <Form.Label className="visually-hidden">
+          Search by Ingredient
+        </Form.Label>
         <Form.Control
           className=""
           {...ingredientProps}
           type="text"
-          placeholder="enter an ingredient"
+          placeholder="Enter an ingredient"
           required
         />
         <Button className="">

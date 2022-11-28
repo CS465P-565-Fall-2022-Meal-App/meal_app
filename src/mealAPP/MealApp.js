@@ -4,13 +4,13 @@ import React from 'react';
 
 import './MealApp.css';
 
-import MealList from './MealApp/MealList';
-import SearchIngredientForm from './MealApp/SearchIngredientForm';
+import MealList from './MealList';
+import MealIngredientSearch from './MealIngredientSearch';
 
-export default function App() {
+export default function MealApp() {
   return (
     <div className="MealApp">
-      <SearchIngredientForm />
+      <MealIngredientSearch />
       <MealList />
     </div>
   );
