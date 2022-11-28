@@ -1,6 +1,6 @@
 /** @format */
 
-import { meals } from './MealAppDir/MealProvider';
+import { meals } from './MealApp/MealProvider';
 
 // import { TEST_MEAL_LIST_1 } from './MealApp/testData';
 
