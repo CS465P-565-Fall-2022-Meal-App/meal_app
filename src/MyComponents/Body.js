@@ -1,4 +1,6 @@
-import React from "react";
+/** @format */
+
+import React from 'react';
 
 export default function Body() {
   return (
@@ -22,7 +24,7 @@ export default function Body() {
             <img
               src="1.jpg"
               className="d-block w-100"
-              alt="Pancake breakfast Picture"
+              alt="Pancake breakfast"
             />
             <div className="carousel-caption d-none d-md-block bg-dark textopaque">
               <h2>Welcome to My Chef</h2>
@@ -30,22 +32,14 @@ export default function Body() {
             </div>
           </div>
           <div className="carousel-item">
-            <img
-              src="2.jpg"
-              className="d-block w-100"
-              alt="Eggs breakfast Picture"
-            />
+            <img src="2.jpg" className="d-block w-100" alt="Eggs breakfast" />
             <div className="carousel-caption d-none d-md-block bg-dark textopaque">
               <h2>Welcome to My Chef</h2>
               <p>Give us ingrident we give you Ideas</p>
             </div>
           </div>
           <div className="carousel-item">
-            <img
-              src="3.jpg"
-              className="d-block w-100"
-              alt="Desert sweetdish picture"
-            />
+            <img src="3.jpg" className="d-block w-100" alt="Desert sweetdish" />
             <div className="carousel-caption d-none d-md-block bg-dark textopaque">
               <h2>Welcome to My Chef</h2>
               <p>No one is born a great cook, one learns by doing</p>
