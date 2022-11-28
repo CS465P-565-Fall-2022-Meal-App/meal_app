@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import MealApp from '../MealApp/MealApp';
+
 export default function Body() {
   return (
     <div>
@@ -81,19 +83,7 @@ export default function Body() {
             <cite>-Jamie Oliver</cite>
           </blockquote>
 
-          <div className="meal-search-box">
-            <label for="search-input"></label>
-            <input
-              type="text"
-              className="search-control"
-              placeholder="Enter an ingredient"
-              id="search-input"
-            />
-
-            <button type="submit" className="search-btn" id="search-btn">
-              <i className="fas fa-search" aria-hidden="true"></i>GO
-            </button>
-          </div>
+          <MealApp />
         </div>
       </div>
     </div>

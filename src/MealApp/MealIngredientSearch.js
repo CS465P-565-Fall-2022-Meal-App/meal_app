@@ -16,17 +16,20 @@ export default function MealIngredientSearch() {
 
   return (
     <form onSubmit={ingredientSubmit}>
-      <div className="my-3 container">
-        <label className="visually-hidden">Search by Ingredient</label>
+      <div className="container meal-search-box">
+        <label className="visually-hidden" for="search-input">
+          Search by Ingredient
+        </label>
         <input
-          className="search-input"
+          className="search-control"
           {...ingredientProps}
           type="text"
           placeholder="Enter an Ingredient"
+          id="search-input"
           required
         />
-        <button className="search-btn">
-          <FaSearch />
+        <button type="submit" className="search-btn" id="search-btn">
+          <FaSearch className="fas fa-search" aria-hidden="true" />
         </button>
       </div>
     </form>

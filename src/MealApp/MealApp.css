@@ -10,23 +10,6 @@
   width: 1px;
 }
 
-.search-input {
-  padding-left: 1em;
-  height: 30px;
-  border: 1px solid black;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-}
-
-.search-btn {
-  padding-right: 1em;
-  height: 30px;
-  width: 30px;
-  border: 1px solid black;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-}
-
 .search-btn:hover {
   border: 2px blue solid;
 }
