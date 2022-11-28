@@ -1,7 +1,6 @@
 /** @format */
 
 import React from 'react';
-import { Form, Button } from 'react-bootstrap';
 import { FaSearch } from 'react-icons/fa';
 import { useInput } from '../hooks';
 import { useMeals } from './MealProvider';
@@ -9,29 +8,27 @@ import { useMeals } from './MealProvider';
 export default function MealIngredientSearch() {
   const [ingredientProps, resetIngredient] = useInput('');
   const { getMeals } = useMeals();
-  const submit = (event) => {
+  const ingredientSubmit = (event) => {
     event.preventDefault();
     getMeals(ingredientProps.value);
     resetIngredient();
   };
 
   return (
-    <Form onSubmit={submit}>
-      <Form.Group className="mb-3 container">
-        <Form.Label className="visually-hidden">
-          Search by Ingredient
-        </Form.Label>
-        <Form.Control
-          className=""
+    <form onSubmit={ingredientSubmit}>
+      <div className="my-3 container">
+        <label className="visually-hidden">Search by Ingredient</label>
+        <input
+          className="search-input"
           {...ingredientProps}
           type="text"
-          placeholder="Enter an ingredient"
+          placeholder="Enter an Ingredient"
           required
         />
-        <Button className="">
+        <button className="search-btn">
           <FaSearch />
-        </Button>
-      </Form.Group>
-    </Form>
+        </button>
+      </div>
+    </form>
   );
 }
