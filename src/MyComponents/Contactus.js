@@ -8,12 +8,10 @@ export default function Contactus() {
   const [usubject, setsubject] = useState("");
   const [umessage, setmessage] = useState("");
   const [numbers, setnumber] = useState("");
-  //const [emailpattern, setemailpattern] = useState("");
 
   const [error, setError] = useState(false);
   function sendemail(e) {
     let numbers = /^[0-9]+$/;
-    //let emailpattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     e.preventDefault();
     if (
       Name.length == 0 ||
