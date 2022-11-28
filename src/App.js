@@ -4,9 +4,7 @@ import Header from "./MyComponents/Header";
 import Body from "./MyComponents/Body";
 import Footer from "./MyComponents/Footer";
 import React, { useState } from "react";
-//import { Routes, Route } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-//import Home from "./MyComponents/Home";
 import About from "./MyComponents/About";
 import Contactus from "./MyComponents/Contactus";
 
