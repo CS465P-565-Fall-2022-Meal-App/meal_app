@@ -1,5 +1,15 @@
 /** @format */
 
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 .search-input {
   padding-left: 1em;
   height: 30px;
@@ -19,4 +29,43 @@
 
 .search-btn:hover {
   border: 2px blue solid;
+}
+
+.meal-list {
+  margin: auto;
+  width: 90%;
+}
+
+.card-container {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.card {
+  background-color: aliceblue;
+  width: 16em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: stretch;
+}
+
+.card-header {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.close-btn {
+  display: block;
+}
+
+.card-title {
+  display: block;
 }
