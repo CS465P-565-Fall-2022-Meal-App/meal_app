@@ -1,38 +1,40 @@
-import Modal from "../../node_modules/react-bootstrap/Modal";
-import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
+/** @format */
+
+import Modal from '../../node_modules/react-bootstrap/Modal';
+import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
 import {
   faClock,
   faUser,
   faBookmark,
-} from "@fortawesome/fontawesome-free-regular";
-import styles from "./RecipeModal.module.css";
+} from '@fortawesome/fontawesome-free-regular';
+import styles from './RecipeModal.module.css';
 
 class RecipeModal extends Component {
   state = {
-    mealName: "",
-    mealImg: "",
+    mealName: '',
+    mealImg: '',
     mealInstructions: [],
     mealIngredients: [],
-    mealYoutubeURL: "",
+    mealYoutubeURL: '',
   };
   componentDidMount() {
     axios
       .get(
-        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${this.props.id}`
+        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${this.props.id}`,
       )
       .then((res) => {
         const meal = res.data.meals[0];
         let ingredients = [];
         for (var i = 1; i < 21; i++) {
-          let ingredient = "";
-          if (meal[`strIngredient${i}`] !== "") {
+          let ingredient = '';
+          if (meal[`strIngredient${i}`] && meal[`strIngredient${i}`] !== '') {
             ingredient += meal[`strIngredient${i}`];
           } else {
             break;
           }
-          if (meal[`strMeasure${i}`] !== "") {
+          if (meal[`strMeasure${i}`] && meal[`strMeasure${i}`] !== '') {
             ingredient += ` - ${meal[`strMeasure${i}`]}`;
           }
           ingredients.push(ingredient);
@@ -47,7 +49,7 @@ class RecipeModal extends Component {
       });
   }
   openYoutube = () => {
-    window.open(this.state.mealYoutubeURL, "_blank", "noopener,noreferrer");
+    window.open(this.state.mealYoutubeURL, '_blank', 'noopener,noreferrer');
   };
   constructor(props) {
     super(props);
@@ -75,28 +77,28 @@ class RecipeModal extends Component {
             src={this.state.mealImg}
             alt=""
           />
-          <div style={{ textAlign: "left" }}>
+          <div style={{ textAlign: 'left' }}>
             <h3>{this.state.mealName}</h3>
             <div className={styles.separator}></div>
           </div>
           <div className={styles.container}>
             <div className={styles.column}>
               <h4 className={styles.columntitle}>
-                <FontAwesomeIcon style={{ color: "gray" }} icon={faClock} />
+                <FontAwesomeIcon style={{ color: 'gray' }} icon={faClock} />
                 &nbsp; 20
               </h4>
               <h6>Minutes</h6>
             </div>
             <div className={styles.column}>
               <h4 className={styles.columntitle}>
-                <FontAwesomeIcon style={{ color: "gray" }} icon={faBookmark} />
+                <FontAwesomeIcon style={{ color: 'gray' }} icon={faBookmark} />
                 &nbsp; {this.state.mealIngredients.length}
               </h4>
               <h6>Ingredients</h6>
             </div>
             <div className={styles.column}>
               <h4 className={styles.columntitle}>
-                <FontAwesomeIcon style={{ color: "gray" }} icon={faUser} />
+                <FontAwesomeIcon style={{ color: 'gray' }} icon={faUser} />
                 &nbsp; 4-5
               </h4>
               <h6>Servings</h6>
