@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Meal from './Meal';
+import { Button } from 'react-bootstrap';
 import { useMeals } from './MealProvider';
 
 export default function MealList() {
@@ -24,9 +25,7 @@ export default function MealList() {
   return (
     <>
       <section className="meal-list">
-        <button className="" onClick={() => removeAllMeals()}>
-          Clear List
-        </button>
+        <Button onClick={() => removeAllMeals()}>Clear List</Button>
         <div className="card-container">
           {meals.map((meal) => (
             <>

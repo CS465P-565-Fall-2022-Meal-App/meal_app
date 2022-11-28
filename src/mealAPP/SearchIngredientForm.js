@@ -1,6 +1,7 @@
 /** @format */
 
 import React from 'react';
+import { Form, Button } from 'react-bootstrap';
 import { FaSearch } from 'react-icons/fa';
 import { useInput } from '../hooks';
 import { useMeals } from './MealProvider';
@@ -15,21 +16,20 @@ export default function SearchIngredientForm() {
   };
 
   return (
-    <form className="meal-search-box" onSubmit={submit}>
-      <label className="visually-hidden" for="search-input">
-        Search by Ingredient
-      </label>
-      <input
-        className="search-control"
-        {...ingredientProps}
-        type="text"
-        placeholder="Enter an ingredient"
-        id="search-input"
-        required
-      />
-      <button className="search-btn" type="submit" id="search-btn">
-        <FaSearch />
-      </button>
-    </form>
+    <Form className="" onSubmit={submit}>
+      <Form.Group>
+        <Form.Label>Search by Ingredient</Form.Label>
+        <Form.Control
+          className=""
+          {...ingredientProps}
+          type="text"
+          placeholder="enter an ingredient"
+          required
+        />
+        <Button className="">
+          <FaSearch />
+        </Button>
+      </Form.Group>
+    </Form>
   );
 }
