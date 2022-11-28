@@ -9,8 +9,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import About from './MyComponents/About';
 import Contactus from './MyComponents/Contactus';
 
-import MealApp from './MealApp/MealApp';
-
 export default function App() {
   return (
     <>
