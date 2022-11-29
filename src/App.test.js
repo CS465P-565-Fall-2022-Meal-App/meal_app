@@ -1,8 +1,12 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+/** @format */
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+import { meals } from './MealApp/MealProvider';
+
+// import { TEST_MEAL_LIST_1 } from './MealApp/testData';
+
+describe('testing MealProvider functions', () => {
+  it('should be empty at this time', () => {
+    expect(meals).toEqual();
+  });
+  // TODO: write a series of functions for testing custom hooks.
 });

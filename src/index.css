@@ -1,4 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+/** @format */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
 
 * {
   padding: 0;
@@ -13,7 +15,7 @@ body {
   font-weight: 300;
   font-size: 1.05rem;
   line-height: 1.6;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 .search-btn:hover {
   background: var(--tenne-tawny-dark);

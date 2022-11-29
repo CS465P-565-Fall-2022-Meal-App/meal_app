@@ -1,9 +1,10 @@
-import React from "react";
-import RecipeModal from "./RecipeModal";
+/** @format */
+
+import React from 'react';
+
+import MealApp from '../MealApp/MealApp';
 
 export default function Body() {
-
-  const [modalShow, setModalShow] = React.useState(false);
   return (
     <div>
       <div
@@ -25,7 +26,7 @@ export default function Body() {
             <img
               src="1.jpg"
               className="d-block w-100"
-              alt="Pancake breakfast Picture"
+              alt="Pancake breakfast"
             />
             <div className="carousel-caption d-none d-md-block bg-dark textopaque">
               <h2>Welcome to My Chef</h2>
@@ -33,22 +34,14 @@ export default function Body() {
             </div>
           </div>
           <div className="carousel-item">
-            <img
-              src="2.jpg"
-              className="d-block w-100"
-              alt="Eggs breakfast Picture"
-            />
+            <img src="2.jpg" className="d-block w-100" alt="Eggs breakfast" />
             <div className="carousel-caption d-none d-md-block bg-dark textopaque">
               <h2>Welcome to My Chef</h2>
               <p>Give us ingrident we give you Ideas</p>
             </div>
           </div>
           <div className="carousel-item">
-            <img
-              src="3.jpg"
-              className="d-block w-100"
-              alt="Desert sweetdish picture"
-            />
+            <img src="3.jpg" className="d-block w-100" alt="Desert sweetdish" />
             <div className="carousel-caption d-none d-md-block bg-dark textopaque">
               <h2>Welcome to My Chef</h2>
               <p>No one is born a great cook, one learns by doing</p>
@@ -90,29 +83,8 @@ export default function Body() {
             <cite>-Jamie Oliver</cite>
           </blockquote>
 
-          <div className="meal-search-box">
-            <label for="search-input"></label>
-            <input
-              type="text"
-              className="search-control"
-              placeholder="Enter an ingredient"
-              id="search-input"
-            />
-
-            <button type="submit" className="search-btn" id="search-btn">
-              <i className="fas fa-search" aria-hidden="true"></i>GO
-            </button>
-          </div>
+          <MealApp />
         </div>
-      </div>
-      <div>
-        <button onClick={() => setModalShow(true)}> Tap for Details</button> 
-
-      <RecipeModal
-        id="52773"
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
       </div>
     </div>
   );

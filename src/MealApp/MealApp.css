@@ -1,0 +1,66 @@
+/** @format */
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.search-btn:hover {
+  background-color: green !important;
+  border: 2px green;
+}
+
+.meal-list {
+  margin: auto;
+  width: 90%;
+}
+
+.meal-list .btn {
+  background-color: #ff4e8a !important;
+  border-color: #ff4e8a !important;
+}
+
+.card-container {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.card {
+  background-color: aliceblue;
+  width: 16em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: stretch;
+}
+
+.card-header {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.close-btn {
+  display: block;
+}
+
+.card-title {
+  display: block;
+}
+
+.card .btn {
+  background-color: #ff4e8a !important;
+  border-color: #ff4e8a !important;
+}
