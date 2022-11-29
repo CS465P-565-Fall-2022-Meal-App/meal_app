@@ -1,36 +1,38 @@
+/** @format */
+
 //import React from "react";
-import emailjs from "emailjs-com";
-import React, { useState } from "react";
+import emailjs from 'emailjs-com';
+import React, { useState } from 'react';
 
 export default function Contactus() {
-  const [Name, setFirstName] = useState("");
-  const [uemail, setemail] = useState("");
-  const [usubject, setsubject] = useState("");
-  const [umessage, setmessage] = useState("");
-  const [numbers, setnumber] = useState("");
+  const [Name, setFirstName] = useState('');
+  const [uemail, setemail] = useState('');
+  const [usubject, setsubject] = useState('');
+  const [umessage, setmessage] = useState('');
+  const [numbers, setnumber] = useState('');
 
   const [error, setError] = useState(false);
   function sendemail(e) {
     let numbers = /^[0-9]+$/;
     e.preventDefault();
     if (
-      Name.length == 0 ||
+      Name.length === 0 ||
       Name.match(numbers) ||
-      uemail.length == 0 ||
-      usubject.length == 0 ||
-      umessage.lenght == 0
+      uemail.length === 0 ||
+      usubject.length === 0 ||
+      umessage.lenght === 0
     ) {
       setError(true);
     } else {
       emailjs
         .sendForm(
-          "service_2oxpx1c",
-          "template_l9vg15e",
+          'service_2oxpx1c',
+          'template_l9vg15e',
           e.target,
-          "VkuCkmttyUkqofqH_"
+          'VkuCkmttyUkqofqH_',
         )
         .then((res) => {
-          alert("Thank you, our team will contact you shortly!");
+          alert('Thank you, our team will contact you shortly!');
         })
         .catch((err) => {
           console.log(err);
@@ -58,12 +60,12 @@ export default function Contactus() {
           {error && Name.length <= 0 && Name.match(numbers) ? (
             <label class="validationmessage">Name is Required </label>
           ) : (
-            ""
+            ''
           )}
           {error && Name.match(numbers) ? (
             <label class="validationmessage">Name can't be a number</label>
           ) : (
-            ""
+            ''
           )}
         </div>
         <div class="form-group">
@@ -79,7 +81,7 @@ export default function Contactus() {
           {error && uemail.length <= 0 ? (
             <label class="validationmessage">Email is Required</label>
           ) : (
-            ""
+            ''
           )}
         </div>
 
@@ -96,7 +98,7 @@ export default function Contactus() {
           {error && usubject.length <= 0 ? (
             <label class="validationmessage">Subject is Required</label>
           ) : (
-            ""
+            ''
           )}
         </div>
         <div class="form-group">
@@ -112,7 +114,7 @@ export default function Contactus() {
           {error && umessage.length <= 0 ? (
             <label class="validationmessage">Message is Required</label>
           ) : (
-            ""
+            ''
           )}
         </div>
         <input type="submit" value="Submit" class="btn btn-primary" />
