@@ -9,11 +9,7 @@ export default function MealList() {
   const { meals, removeAllMeals } = useMeals();
 
   if (!meals.length) {
-    return (
-      <div className="meal-empty">
-        Search for a listing of meals by Ingredient
-      </div>
-    );
+    return <div className="meal-empty">Search or browse for meals.</div>;
   }
 
   if (!meals[0].idMeal) {

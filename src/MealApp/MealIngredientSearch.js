@@ -3,14 +3,14 @@
 import React from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { useInput } from '../hooks';
-import { useMeals } from './MealProvider';
+import { useMeals, BASE_URL_INGREDIENT_SEARCH } from './MealProvider';
 
 export default function MealIngredientSearch() {
   const [ingredientProps, resetIngredient] = useInput('');
   const { getMeals } = useMeals();
   const ingredientSubmit = (event) => {
     event.preventDefault();
-    getMeals(ingredientProps.value);
+    getMeals(BASE_URL_INGREDIENT_SEARCH, ingredientProps.value);
     resetIngredient();
   };
 
