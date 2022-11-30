@@ -3,7 +3,9 @@
 import React from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { useInput } from '../hooks';
-import { useMeals, BASE_URL_INGREDIENT_SEARCH } from './MealProvider';
+import { useMeals } from './MealProvider';
+
+import { BASE_URL_INGREDIENT_SEARCH } from '../utilities';
 
 export default function MealIngredientSearch() {
   const [ingredientProps, resetIngredient] = useInput('');

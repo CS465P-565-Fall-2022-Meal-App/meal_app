@@ -9,7 +9,7 @@ import {
   BASE_URL_ALPHA,
   BASE_URL_INGREDIENT_SEARCH,
   BASE_URL_MEAL_NAME_SEARCH,
-} from './MealProvider';
+} from '../utilities';
 import MealSearch from './MealSearch';
 import Browse from './Browse';
 
