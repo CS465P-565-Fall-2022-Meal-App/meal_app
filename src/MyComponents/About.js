@@ -34,7 +34,10 @@ export default function About() {
               <span className="text-muted"> Frontend Expert.</span>
             </h2>
             <p className="lead">
-              Hi everyone! This is Juhi and I am a Computer Science Graduate Student at Portland State University. Connect with me on :- 
+              Hi everyone! This is Juhi and I am a Computer Science Graduate Student
+               at Portland State University. I am responsible for showing the detailed view of a meal recipe
+               and also added the ability to bookmark recipes.
+               Connect with me on :- 
               <a href="https://www.linkedin.com/in/juhikamaraj/">
                 <b>Linkedin</b>
               </a>
