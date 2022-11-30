@@ -8,9 +8,21 @@ import React, { createContext, useState, useContext } from 'react';
  * the moment.
  */
 export const BASE_URL_INGREDIENT_SEARCH =
-  'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
+  'https://www.themealdb.com/api/json/v2/9973533/filter.php?i=';
 export const BASE_URL_MEAL_DETAILS =
-  'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
+  'https://www.themealdb.com/api/json/v2/9973533/lookup.php?i=';
+export const BASE_URL_MEAL_NAME_SEARCH =
+  'https://www.themealdb.com/api/json/v2/9973533/search.php?s=';
+export const BASE_URL_ALPHA =
+  'https://www.themealdb.com/api/json/v2/9973533/search.php?f=';
+export const BASE_URL_CATEGORY =
+  'https://www.themealdb.com/api/json/v2/9973533/filter.php?c=';
+export const BASE_URL_AREA =
+  'https://www.themealdb.com/api/json/v2/9973533/filter.php?a=';
+export const LIST_CATERGORIES_URL =
+  'https://www.themealdb.com/api/json/v2/9973533/list.php?c=list';
+export const LIST_AREAS_URL =
+  'https://www.themealdb.com/api/json/v2/9973533/list.php?a=list';
 
 const MealContext = createContext();
 export const useMeals = () => useContext(MealContext);
@@ -18,8 +30,8 @@ export const useMeals = () => useContext(MealContext);
 export default function MealProvider({ children }) {
   const [meals, setMeals] = useState([]);
   const [details, setDetails] = useState([]);
-  const [fetchParam, setFetchParam] = useState('');
-  const [fetchStatus, setFetchStatus] = useState('waiting');
+  const [categories, setCategories] = useState([]);
+  const [areas, setAreas] = useState([]);
 
   const addMeal = (id, name, thumb) => {
     console.log(id, name);
@@ -33,18 +45,8 @@ export default function MealProvider({ children }) {
     ]);
   };
 
-  async function getDetails(id) {
-    await fetch(`${BASE_URL_MEAL_DETAILS}${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.meals) {
-          setDetails([...data.meals]);
-        }
-      });
-  }
-
-  async function getMeals(param) {
-    await fetch(`${BASE_URL_INGREDIENT_SEARCH}${param}`)
+  async function getMeals(base, param) {
+    await fetch(`${base}${param}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.meals) {
@@ -52,7 +54,19 @@ export default function MealProvider({ children }) {
         } else {
           setMeals([{ mealID: 0, strMeal: 'None Found', strMealThumb: '' }]);
         }
-      });
+      })
+      .catch((error) => console.log(error));
+  }
+
+  async function getList(url, setType) {
+    await fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.meals) {
+          setType([...data.meals]);
+        }
+      })
+      .catch((error) => console.log(error));
   }
 
   const removeMeal = (idMeal) =>
@@ -63,19 +77,17 @@ export default function MealProvider({ children }) {
   return (
     <MealContext.Provider
       value={{
-        BASE_URL_INGREDIENT_SEARCH,
-        BASE_URL_MEAL_DETAILS,
         meals,
         setMeals,
         details,
         setDetails,
-        fetchParam,
-        fetchStatus,
-        setFetchStatus,
+        categories,
+        setCategories,
+        areas,
+        setAreas,
         addMeal,
-        setFetchParam,
-        getDetails,
         getMeals,
+        getList,
         removeMeal,
         removeAllMeals,
       }}
@@ -84,3 +96,32 @@ export default function MealProvider({ children }) {
     </MealContext.Provider>
   );
 }
+
+export const ALPHA = [
+  'A',
+  'B',
+  'C',
+  'D',
+  'E',
+  'F',
+  'G',
+  'H',
+  'I',
+  'J',
+  'K',
+  'L',
+  'M',
+  'N',
+  'O',
+  'P',
+  'Q',
+  'R',
+  'S',
+  'T',
+  'U',
+  'V',
+  'W',
+  'X',
+  'Y',
+  'Z',
+];

@@ -10,6 +10,11 @@
   width: 1px;
 }
 
+.search-btn {
+  height: 60px;
+  width: 60px;
+}
+
 .search-btn:hover {
   background-color: green !important;
   border: 2px green;
@@ -17,7 +22,6 @@
 
 .meal-list {
   margin: auto;
-  width: 90%;
 }
 
 .meal-list .btn {

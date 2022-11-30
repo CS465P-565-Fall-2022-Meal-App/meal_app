@@ -3,28 +3,28 @@
 import React from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { useInput } from '../hooks';
-import { useMeals, BASE_URL_INGREDIENT_SEARCH } from './MealProvider';
+import { useMeals } from './MealProvider';
 
-export default function MealIngredientSearch() {
-  const [ingredientProps, resetIngredient] = useInput('');
+export default function MealSearch({ baseURL, searchType }) {
+  const [searchProps, resetSearch] = useInput('');
   const { getMeals } = useMeals();
-  const ingredientSubmit = (event) => {
+  const searchSubmit = (event) => {
     event.preventDefault();
-    getMeals(BASE_URL_INGREDIENT_SEARCH, ingredientProps.value);
-    resetIngredient();
+    getMeals(baseURL, searchProps.value);
+    resetSearch();
   };
 
   return (
-    <form onSubmit={ingredientSubmit}>
+    <form onSubmit={searchSubmit}>
       <div className="container meal-search-box">
         <label className="visually-hidden" for="search-input">
-          Search by Ingredient
+          Search by {searchType}
         </label>
         <input
           className="search-control"
-          {...ingredientProps}
+          {...searchProps}
           type="text"
-          placeholder="Enter an Ingredient"
+          placeholder={`Enter ${searchType}`}
           id="search-input"
           required
         />

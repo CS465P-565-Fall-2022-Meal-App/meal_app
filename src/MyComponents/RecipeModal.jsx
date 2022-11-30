@@ -1,3 +1,5 @@
+/** @format */
+
 import Modal from "../../node_modules/react-bootstrap/Modal";
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,6 +9,7 @@ import {
   faUser,
   faBookmark,
 } from "@fortawesome/fontawesome-free-regular";
+
 import { faCutlery } from "@fortawesome/free-solid-svg-icons";
 import styles from "./RecipeModal.module.css";
 
@@ -33,12 +36,12 @@ class RecipeModal extends Component {
         let ingredients = [];
         for (var i = 1; i < 21; i++) {
           let ingredient = "";
-          if (meal[`strIngredient${i}`] !== "") {
+          if (meal[`strIngredient${i}`] && meal[`strIngredient${i}`] !== "") {
             ingredient += meal[`strIngredient${i}`];
           } else {
             break;
           }
-          if (meal[`strMeasure${i}`] !== "") {
+          if (meal[`strMeasure${i}`] && meal[`strMeasure${i}`] !== "") {
             ingredient += ` - ${meal[`strMeasure${i}`]}`;
           }
           ingredients.push(ingredient);
