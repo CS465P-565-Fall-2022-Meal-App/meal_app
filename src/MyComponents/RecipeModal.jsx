@@ -1,67 +1,64 @@
 /** @format */
 
-import Modal from "../../node_modules/react-bootstrap/Modal";
-import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
+import Modal from '../../node_modules/react-bootstrap/Modal';
+import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
 import {
   faClock,
   faUser,
   faBookmark,
-} from "@fortawesome/fontawesome-free-regular";
+} from '@fortawesome/fontawesome-free-regular';
 
-import { faCutlery } from "@fortawesome/free-solid-svg-icons";
-import styles from "./RecipeModal.module.css";
+import { faCutlery } from '@fortawesome/free-solid-svg-icons';
+import styles from './RecipeModal.module.css';
+import { BASE_URL_MEAL_DETAILS } from '../utilities';
 
 class RecipeModal extends Component {
   state = {
-    mealName: "",
-    mealImg: "",
+    mealName: '',
+    mealImg: '',
     mealInstructions: [],
     mealIngredients: [],
-    mealYoutubeURL: "",
-    mealId: "",
-    mealCuisine: "",
-    mealCategory: "",
+    mealYoutubeURL: '',
+    mealId: '',
+    mealCuisine: '',
+    mealCategory: '',
     mealTags: [],
   };
 
   componentDidMount() {
-    axios
-      .get(
-        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${this.props.id}`
-      )
-      .then((res) => {
-        const meal = res.data.meals[0];
-        let ingredients = [];
-        for (var i = 1; i < 21; i++) {
-          let ingredient = "";
-          if (meal[`strIngredient${i}`] && meal[`strIngredient${i}`] !== "") {
-            ingredient += meal[`strIngredient${i}`];
-          } else {
-            break;
-          }
-          if (meal[`strMeasure${i}`] && meal[`strMeasure${i}`] !== "") {
-            ingredient += ` - ${meal[`strMeasure${i}`]}`;
-          }
-          ingredients.push(ingredient);
+    axios.get(`${BASE_URL_MEAL_DETAILS}${this.props.id}`).then((res) => {
+      const meal = res.data.meals[0];
+      let ingredients = [];
+      for (var i = 1; i < 21; i++) {
+        let ingredient = '';
+        if (meal[`strIngredient${i}`] && meal[`strIngredient${i}`] !== '') {
+          ingredient += meal[`strIngredient${i}`];
+        } else {
+          break;
         }
-        const mealTags = meal.strTags || "";
-        this.setState({
-          mealName: meal.strMeal,
-          mealImg: meal.strMealThumb,
-          mealInstructions: meal.strInstructions.split(/\r?\n/),
-          mealIngredients: ingredients,
-          mealYoutubeURL: meal.strYoutube,
-          mealId: meal.idMeal,
-          mealCuisine: meal.strArea,
-          mealCategory: meal.strCategory,
-          mealTags: mealTags.split(","),
-        });
+        if (meal[`strMeasure${i}`] && meal[`strMeasure${i}`] !== '') {
+          ingredient += ` - ${meal[`strMeasure${i}`]}`;
+        }
+        ingredients.push(ingredient);
+      }
+      const mealTags = meal.strTags || '';
+      this.setState({
+        mealName: meal.strMeal,
+        mealImg: meal.strMealThumb,
+        mealInstructions: meal.strInstructions.split(/\r?\n/),
+        mealIngredients: ingredients,
+        mealYoutubeURL: meal.strYoutube,
+        mealId: meal.idMeal,
+        mealCuisine: meal.strArea,
+        mealCategory: meal.strCategory,
+        mealTags: mealTags.split(','),
       });
+    });
   }
   openYoutube = () => {
-    window.open(this.state.mealYoutubeURL, "_blank", "noopener,noreferrer");
+    window.open(this.state.mealYoutubeURL, '_blank', 'noopener,noreferrer');
   };
   saveRecipe = () => {
     const savedRecipe = {
@@ -69,9 +66,9 @@ class RecipeModal extends Component {
       img: this.state.mealImg,
       id: this.state.mealId,
     };
-    var prevRecipes = JSON.parse(localStorage.getItem("savedRecipes") || "[]");
+    var prevRecipes = JSON.parse(localStorage.getItem('savedRecipes') || '[]');
     prevRecipes.push(savedRecipe);
-    localStorage.setItem("savedRecipes", JSON.stringify(prevRecipes));
+    localStorage.setItem('savedRecipes', JSON.stringify(prevRecipes));
   };
 
   constructor(props) {
@@ -103,7 +100,7 @@ class RecipeModal extends Component {
             src={this.state.mealImg}
             alt=""
           />
-          <div style={{ textAlign: "left" }}>
+          <div style={{ textAlign: 'left' }}>
             <div className={styles.alignVertical}>
               <h3>{this.state.mealName} </h3>
               <p className={styles.w3tag}>{this.state.mealCuisine}</p>
@@ -113,28 +110,28 @@ class RecipeModal extends Component {
           <div className={styles.container}>
             <div className={styles.column}>
               <h4 className={styles.columntitle}>
-                <FontAwesomeIcon style={{ color: "gray" }} icon={faClock} />
+                <FontAwesomeIcon style={{ color: 'gray' }} icon={faClock} />
                 &nbsp; 20
               </h4>
               <h6>Minutes</h6>
             </div>
             <div className={styles.column}>
               <h4 className={styles.columntitle}>
-                <FontAwesomeIcon style={{ color: "gray" }} icon={faBookmark} />
+                <FontAwesomeIcon style={{ color: 'gray' }} icon={faBookmark} />
                 &nbsp; {this.state.mealIngredients.length}
               </h4>
               <h6>Ingredients</h6>
             </div>
             <div className={styles.column}>
               <h4 className={styles.columntitle}>
-                <FontAwesomeIcon style={{ color: "gray" }} icon={faUser} />
+                <FontAwesomeIcon style={{ color: 'gray' }} icon={faUser} />
                 &nbsp; 4-5
               </h4>
               <h6>Servings</h6>
             </div>
             <div className={styles.column}>
               <h4 className={styles.columntitle}>
-                <FontAwesomeIcon style={{ color: "gray" }} icon={faCutlery} />
+                <FontAwesomeIcon style={{ color: 'gray' }} icon={faCutlery} />
                 &nbsp; {this.state.mealCategory}
               </h4>
               <h6>Category</h6>

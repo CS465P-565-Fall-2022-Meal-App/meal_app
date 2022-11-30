@@ -1,10 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+/** @format */
+
+import React from 'react';
+import { Link } from 'react-router-dom';
 export default function Header() {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
           My Chef
         </a>
         <button
