@@ -26,7 +26,7 @@ class SavedRecipe extends Component {
       <div>
         <h3>Saved Recipes</h3>
         <div className={styles.separator} />
-        <div className={styles.fullWidth}>{savedRecipes}</div>;
+        <div className={styles.fullWidth}>{savedRecipes}</div>
       </div>
     );
   }
