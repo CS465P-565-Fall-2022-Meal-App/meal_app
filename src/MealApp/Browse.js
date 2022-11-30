@@ -9,7 +9,11 @@ export default function Browse({ list, url }) {
 
   return (
     <div>
-      <Nav as="ul" onSelect={(selectedKey) => getMeals(url, selectedKey)}>
+      <Nav
+        className="browse justify-content-center"
+        as="ul"
+        onSelect={(selectedKey) => getMeals(url, selectedKey)}
+      >
         {list.map((item) => (
           <Nav.Item>
             <Nav.Link eventKey={item}>{item}</Nav.Link>
