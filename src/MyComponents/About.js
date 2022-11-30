@@ -31,13 +31,16 @@ export default function About() {
           <div className="col-md-7 order-md-2">
             <h2 className="featurette-heading">
               Juhi
-              <span className="text-muted"> Middleware Expert.</span>
+              <span className="text-muted"> Frontend Expert.</span>
             </h2>
             <p className="lead">
-              Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id
-              ligula porta felis euismod semper. Praesent commodo cursus magna,
-              vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
-              commodo.
+              Hi everyone! This is Juhi and I am a Computer Science Graduate Student
+               at Portland State University. I am responsible for showing the detailed view of a meal recipe
+               and also added the ability to bookmark recipes.
+               Connect with me on :- 
+              <a href="https://www.linkedin.com/in/juhikamaraj/">
+                <b>Linkedin</b>
+              </a>
             </p>
           </div>
           <div className="col-md-5 order-md-1">

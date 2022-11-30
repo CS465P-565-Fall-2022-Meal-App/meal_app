@@ -37,6 +37,11 @@ export default function Header() {
                 Contact Us
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/savedrecipes">
+                Saved Recipes
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>
