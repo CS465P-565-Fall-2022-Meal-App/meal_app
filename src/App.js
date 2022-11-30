@@ -8,6 +8,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import About from './MyComponents/About';
 import Contactus from './MyComponents/Contactus';
+import SavedRecipe from './MyComponents/SavedRecipe'
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contactus" element={<Contactus />} />
           <Route path="/" element={<Body />} />
+          <Route path="/savedrecipes" element={<SavedRecipe />} />
         </Routes>
         <Footer />
       </Router>

@@ -29,6 +29,7 @@ export default function Meal({ idMeal, strMeal, strMealThumb }) {
         </Button>
         <RecipeModal
           id={idMeal}
+          showSaveButton={true}
           show={modalShow}
           onHide={() => setModalShow(false)}
         />
